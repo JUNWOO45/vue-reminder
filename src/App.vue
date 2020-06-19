@@ -3,7 +3,7 @@
     <TodoHeader />
     <!-- <TodoInput v-on:addTodoItem="addTodoItemFromApp"/> -->
     <TodoInput />
-    <TodoList v-bind:propsData="todoList" v-on:removeTodoItem="removeTodoItemFromApp" v-on:toggleTodoItem="toggleTodoItemFromApp" />
+    <TodoList />
     <TodoFooter v-on:clearAllTodoItem="clearAllTodoItemFromApp"/>
     <div>{{this.$store.state.testMsg}}</div>
   </div>
@@ -22,21 +22,16 @@ export default {
     }
   },
   methods: {
-    // addTodoItemFromApp: function(todoItem) {
-    //   const stringifyData = JSON.stringify( { name: todoItem, done: false });
-    //   localStorage.setItem(todoItem, stringifyData);
-    //   this.todoList.push({ name: todoItem, done: false });
+    // removeTodoItemFromApp: function(item, index) {
+    //   localStorage.removeItem(item.name);
+    //   this.todoList.splice(index, 1);
     // },
-    removeTodoItemFromApp: function(item, index) {
-      localStorage.removeItem(item.name);
-      this.todoList.splice(index, 1);
-    },
-    toggleTodoItemFromApp: function(item, index) {
-      const parsedItem = JSON.parse(localStorage.getItem(item.name));
-      const stringifyTodo = JSON.stringify({ name: item.name, done: !parsedItem.done });
-      localStorage.setItem(item.name, stringifyTodo);
-      this.todoList[index].done = !this.todoList[index].done;
-    },
+    // toggleTodoItemFromApp: function(item, index) {
+    //   const parsedItem = JSON.parse(localStorage.getItem(item.name));
+    //   const stringifyTodo = JSON.stringify({ name: item.name, done: !parsedItem.done });
+    //   localStorage.setItem(item.name, stringifyTodo);
+    //   this.todoList[index].done = !this.todoList[index].done;
+    // },
     clearAllTodoItemFromApp: function() {
       localStorage.clear();
       this.todoList = [];

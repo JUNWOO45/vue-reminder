@@ -22,7 +22,7 @@ export const store = new Vuex.Store({
 
   state: {
     headerText: 'TODO header',
-    todoItems: storage.fetch()
+    todoList: storage.fetch()
   },
   mutations: {
     changeHeaderText(state) {
@@ -31,7 +31,17 @@ export const store = new Vuex.Store({
     addTodo(state, todoItem) {
       const stringifyData = JSON.stringify( { name: todoItem, done: false });
       localStorage.setItem(todoItem, stringifyData);
-      state.todoItems.push({ name: todoItem, done: false });
+      state.todoList.push({ name: todoItem, done: false });
+    },
+    removeTodo(state, {item, index}) {
+      localStorage.removeItem(item.name);
+      state.todoList.splice(index, 1);
+    },
+    toggleTodo(state, {item, index}) {
+      const parsedItem = JSON.parse(localStorage.getItem(item.name));
+      const stringifyTodo = JSON.stringify({ name: item.name, done: !parsedItem.done });
+      localStorage.setItem(item.name, stringifyTodo);
+      state.todoList[index].done = !state.todoList[index].done;
     },
   }
 });

@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="(item, index) in this.$store.state.todoItems" v-bind:key="`${item}${index}`" v-on:click="toggleTodo(item, index)" v-bind:class="{completed: item.done}" class="list">
+    <li v-for="(item, index) in this.$store.state.todoList" v-bind:key="`${item}${index}`" v-on:click="toggleTodo(item, index)" v-bind:class="{completed: item.done}" class="list">
       {{ item.name }}
       <span class="remove-button" v-on:click.stop="removeTodo(item, index)">삭제</span>
     </li>
@@ -9,13 +9,13 @@
 
 <script>
 export default {
-  props: ['propsData'],
+  // props: ['propsData'],
   methods: {
     removeTodo: function(item, index) {
-      this.$emit('removeTodoItem', item, index);
+      this.$store.commit('removeTodo', {item, index})
     },
     toggleTodo: function(item, index) {
-      this.$emit('toggleTodoItem', item, index);
+      this.$store.commit('toggleTodo', {item, index})
     }
   },
   
