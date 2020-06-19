@@ -1,6 +1,18 @@
 <template>
-  <h1>TODO header</h1>
+  <!-- <h1>TODO header</h1> -->
+  <h1 v-on:click="changeText">{{ this.$store.state.headerText }}</h1>
 </template>
+
+<script>
+  export default {
+    methods: {
+      changeText() {
+        console.log('clicked');
+        this.$store.commit('changeHeaderText');
+      }
+    }
+  }
+</script>
 
 <style scoped>
   h1 {
