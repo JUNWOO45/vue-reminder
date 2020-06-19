@@ -9,12 +9,11 @@
 
 <script>
 export default {
-  // props: ['propsData'],
   methods: {
-    removeTodo: function(item, index) {
+    removeTodo(item, index) {
       this.$store.commit('removeTodo', {item, index})
     },
-    toggleTodo: function(item, index) {
+    toggleTodo(item, index) {
       this.$store.commit('toggleTodo', {item, index})
     }
   },

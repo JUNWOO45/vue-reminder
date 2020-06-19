@@ -13,14 +13,13 @@ export default {
     }
   },
   methods: {
-    addTodo: function() {
+    addTodo() {
       if(this.newTodoItem !== '') {
-        // this.$emit('addTodoItem', this.newTodoItem);
         this.$store.commit('addTodo', this.newTodoItem);
         this.clearInput();
       }
     },
-    clearInput: function() {
+    clearInput() {
       this.newTodoItem = ''; 
     }
   } 
